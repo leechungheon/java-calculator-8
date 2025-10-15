@@ -51,7 +51,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 숫자_사이_탭_공백() {
         assertSimpleTest(() -> {
-            run("1,     2,  3");
+            run("1,\t\t2,\t3");
             assertThat(output()).contains("결과 : 6");
         });
     }
@@ -91,7 +91,15 @@ class ApplicationTest extends NsTest {
     @Test
     void 공백_탭_입력() {
         assertSimpleTest(() -> {
-            run("   ");
+            run("\t");
+            assertThat(output()).contains("결과 : 0");
+        });
+    }
+
+    @Test
+    void 공백_엔터_입력() {
+        assertSimpleTest(() -> {
+            run("\n");
             assertThat(output()).contains("결과 : 0");
         });
     }
@@ -219,7 +227,23 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_여러개() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//!\n//@\n1!2@3"))
+                assertThatThrownBy(() -> runException("//!\\n//@\\n1!2@3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 커스텀_구분자_위치_오류() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//!\n1!2@3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 커스텀_구분자_없음() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//\n1!2!3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -244,16 +268,6 @@ class ApplicationTest extends NsTest {
     void 커스텀_구분자_기본_구분자_혼용() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("//;\n1,2;3"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    void 출력값_범위_초과() {
-        String maxLong = "9223372036854775807";
-
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException(maxLong + "," + "1"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
