@@ -11,7 +11,9 @@ public class Calculator {
             str = str.trim();
             if (str.isBlank()) { // 1. 공백을 입력한다면 0을 반환
                 return 0;
-            } else if (texts.length == 1) { // 2. 한 자리 숫자라면 해당 숫자를 반환
+            } else if (str.contains("-")) { // 2. 음수 입력 시 예외 처리
+                throw new IllegalArgumentException();
+            } else if (texts.length == 1) { // 3. 한 자리 숫자라면 해당 숫자를 반환
                 return Integer.parseInt(str);
             } else {
             }
