@@ -235,7 +235,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_위치_오류() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1!2!3//!\n"))
+                assertThatThrownBy(() -> runException("1!2!3//!\\n"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -243,7 +243,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_없음() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//\n1!2!3"))
+                assertThatThrownBy(() -> runException("//\\n1!2!3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -251,7 +251,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_숫자() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//2\n12321"))
+                assertThatThrownBy(() -> runException("//2\\n12321"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -259,7 +259,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_스페이스() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("// \n1 2 3"))
+                assertThatThrownBy(() -> runException("// \\n1 2 3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -267,7 +267,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_길이_1초과() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//!@\n1!@2!@3"))
+                assertThatThrownBy(() -> runException("//!@\\n1!@2!@3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
@@ -275,7 +275,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_기본_구분자_혼용() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//;\n1,2;3"))
+                assertThatThrownBy(() -> runException("//;\\n1,2;3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }

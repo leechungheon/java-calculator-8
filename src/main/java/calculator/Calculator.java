@@ -14,7 +14,7 @@ public class Calculator {
                 throw new IllegalArgumentException();
             } else if (texts.length == 1) { // 3. 한 자리 숫자라면 해당 숫자를 반환
                 return Integer.parseInt(str);
-            } else {
+            } else { // 4. 그 외의 경우에는 기본 구분자로 구분된 모든 숫자의 합을 반환
                 sum += Integer.parseInt(str);
             }
         }
