@@ -15,7 +15,7 @@ public class Validator {
             Pattern.quote(START_CUSTOM_DELIMITER) + "(.+?)" + Pattern.quote(END_CUSTOM_DELIMITER);
     private static final Pattern PATTERN = Pattern.compile(REGEX);
 
-    private static String extractDelimiter(String text) {
+    public static String extractDelimiter(String text) {
         Matcher matcher = PATTERN.matcher(text);
         if (matcher.find()) {
             return matcher.group(1);
@@ -53,8 +53,8 @@ public class Validator {
     }
 
     public static boolean isCustomDelimiter(String text) {
-        //공백제거
         text = text.replaceAll("\\s", "");
+
         if (!text.startsWith(START_CUSTOM_DELIMITER) || !text.contains(END_CUSTOM_DELIMITER)) {
             System.out.println("커스텀 구분자 양식이 포함되어 있지 않습니다.");
             return false;

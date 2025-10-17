@@ -7,11 +7,11 @@ public class Application {
         // TODO: 프로그램 구현
         System.out.println("덧셈할 문자열을 입력해 주세요.");
         String input = Console.readLine();
+
         boolean isCustomDelimiter = Validator.isCustomDelimiter(input);
         if (isCustomDelimiter) {
-            //int result = Calculator.customDelimiter(input);
-            //System.out.println("결과 : " + result);
-            System.out.println("커스텀 구분자 기능은 아직 구현되지 않았습니다.");
+            int result = Calculator.customDelimiter(input, Validator.extractDelimiter(input));
+            System.out.println("결과 : " + result);
         } else {
             int result = Calculator.defaultDelimiter(input);
             System.out.println("결과 : " + result);
