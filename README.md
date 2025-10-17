@@ -13,19 +13,19 @@
 - **요구조건**
 - [ ]  쉼표(,) 또는 콜론(:)을 구분자로 가지는 문자열인가
 - [ ]  커스텀 구분자라면 문자열 앞부분의 "//"와 "\n" 사이에 위치하는 문자가 있는가
-- [ ]  공백을 입력한다면 0을 반환한다.
+- [x]  공백을 입력한다면 0을 반환한다.
 - [ ]  숫자가 하나라면 해당 숫자를 반환한다.
 - [ ]  입력한 문자열에서 숫자를 추출하여 더한다.
 
 
 - **출력조건**
-- [ ]  문자열 안내 출력문이 포함되어 있는가
-- [ ]  결과 출력문 양식이 올바른가
+- [x]  문자열 안내 출력문이 포함되어 있는가
+- [x]  결과 출력문 양식이 올바른가
 
 ```yaml
 덧셈할 문자열을 입력해 주세요.
-1,2:3
-결과 : 6
+  1,2:3
+결과: 6
 ```
 
 - **예외조건**
@@ -45,29 +45,29 @@
 
 ## 📣커밋메시지 컨벤션
 
-| **Type** | **Description** |
-| --- | --- |
-| feat | 새로운 기능 추가 |
-| fix | 버그 수정 |
-| docs | 문서 변경 |
-| style | 코드 포맷 변경 |
-| refactor | 코드 리팩토링 |
-| test | 테스트 추가 및 수정 |
-| chore | 빌드 작업 및 도구 관련 변경 |
+| **Type** | **Description**  |
+|----------|------------------|
+| feat     | 새로운 기능 추가        |
+| fix      | 버그 수정            |
+| docs     | 문서 변경            |
+| style    | 코드 포맷 변경         |
+| refactor | 코드 리팩토링          |
+| test     | 테스트 추가 및 수정      |
+| chore    | 빌드 작업 및 도구 관련 변경 |
 
 ---
 
 ## **💻프로그래밍 요구 사항**
 
 - JDK 21 버전에서 실행 가능해야 한다.
-- 프로그램 실행의 시작점은 `Application`의 `main()`이다.
-- `build.gradle` 파일은 변경할 수 없으며, **제공된 라이브러리 이외의 외부 라이브러리는 사용하지 않는다.**
-- 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
+- 프로그램 실행의 시작점은`Application`의`main()`이다.
+- `build.gradle`파일은 변경할 수 없으며,**제공된 라이브러리 이외의 외부 라이브러리는 사용하지 않는다.**
+- 프로그램 종료 시`System.exit()`를 호출하지 않는다.
 - 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 등의 이름을 바꾸거나 이동하지 않는다.
 - 자바 코드 컨벤션을 지키면서 프로그래밍한다.
-    - 기본적으로 [Java Style Guide](https://github.com/woowacourse/woowacourse-docs/blob/main/styleguide/java)를 원칙으로 한다.
+    - 기본적으로[Java Style Guide](https://github.com/woowacourse/woowacourse-docs/blob/main/styleguide/java)를 원칙으로 한다.
 
 ### **라이브러리**
 
-- `camp.nextstep.edu.missionutils`에서 제공하는 `Console` API를 사용하여 구현해야 한다.
-    - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+- `camp.nextstep.edu.missionutils`에서 제공하는`Console`API를 사용하여 구현해야 한다.
+    - 사용자가 입력하는 값은`camp.nextstep.edu.missionutils.Console`의`readLine()`을 활용한다.
