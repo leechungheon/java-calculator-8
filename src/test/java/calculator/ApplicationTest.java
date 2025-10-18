@@ -265,6 +265,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 커스텀_구분자_앞뒤_사용() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//!\\n!1!2!3!"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
     void 커스텀_구분자_없음() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("//\\n1!2!3"))

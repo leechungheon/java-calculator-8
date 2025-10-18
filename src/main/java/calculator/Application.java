@@ -10,10 +10,10 @@ public class Application {
 
         boolean isCustomDelimiter = Validator.isCustomDelimiter(input);
         if (isCustomDelimiter) {
-            int result = Calculator.customDelimiter(input, Validator.extractDelimiter(input));
+            int result = Calculator.add(input, Validator.extractDelimiter(input));
             System.out.println("결과 : " + result);
         } else {
-            int result = Calculator.defaultDelimiter(input);
+            int result = Calculator.add(input, null);
             System.out.println("결과 : " + result);
         }
     }
