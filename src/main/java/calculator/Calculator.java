@@ -3,7 +3,13 @@ package calculator;
 import java.util.regex.Pattern;
 
 public class Calculator {
-    public static int add(String text, String customDelimiter) {
+    public static int add(String text) {
+        boolean isCustomDelimiter = Validator.isCustomDelimiter(text);
+        String customDelimiter = null;
+        if (isCustomDelimiter) {
+            customDelimiter = Validator.extractDelimiter(text);
+        }
+
         String[] texts;
         if (customDelimiter == null) { // 기본 구분자 사용 시
             texts = text.replaceAll("\\s", "").split("[,:]+");
