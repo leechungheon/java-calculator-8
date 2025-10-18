@@ -201,6 +201,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 커스텀_구분자_앞뒤_사용() {
+        assertSimpleTest(() -> {
+            run("//-\\n-1-2-3---");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
     void 음수_입력() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("-1,2,3"))
@@ -268,14 +276,6 @@ class ApplicationTest extends NsTest {
     void 커스텀_구분자_위치_오류() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1!2!3//!\\n"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
-    }
-
-    @Test
-    void 커스텀_구분자_앞뒤_사용() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//!\\n!1!2!3!"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
