@@ -33,10 +33,26 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기본_구분자_스페이스_포함() {
+        assertSimpleTest(() -> {
+            run("1: :3");
+            assertThat(output()).contains("결과 : 4");
+        });
+    }
+
+    @Test
     void 기본_구분자_여러번_사용() {
         assertSimpleTest(() -> {
             run("1::::2:,,:::3");
             assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
+    void 기본_구분자_앞뒤_사용() {
+        assertSimpleTest(() -> {
+            run(",1:2:5,");
+            assertThat(output()).contains("결과 : 8");
         });
     }
 
@@ -156,6 +172,14 @@ class ApplicationTest extends NsTest {
     void 커스텀_구분자_사용_여는대괄호() {
         assertSimpleTest(() -> {
             run("//[\\n1[2[3");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
+    void 커스텀_구분자_사용_마이너스() {
+        assertSimpleTest(() -> {
+            run("//-\\n1-2-3");
             assertThat(output()).contains("결과 : 6");
         });
     }
