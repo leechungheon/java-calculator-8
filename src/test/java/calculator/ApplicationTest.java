@@ -233,6 +233,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 예외_문자_하나_입력() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("@"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
     void 실수_입력() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1,2.5,3"))
