@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * 커스텀 구분자 판별 클래스
  */
-public class Validator {
+public class Delimiter {
 
     public static final String START_CUSTOM_DELIMITER = "//";
     public static final String END_CUSTOM_DELIMITER = "\\n";
