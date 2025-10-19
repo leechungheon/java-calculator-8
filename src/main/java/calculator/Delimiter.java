@@ -55,19 +55,15 @@ public class Delimiter {
         text = text.replaceAll("\\s", "");
 
         if (!text.startsWith(START_CUSTOM_DELIMITER) || !text.contains(END_CUSTOM_DELIMITER)) {
-            System.out.println("커스텀 구분자 양식이 포함되어 있지 않습니다.");
             return false;
         }
         if (hasMultipleCustomDelimiter(text)) { // 커스텀 구분자가 하나가 아닌 경우
-            System.out.println("커스텀 구분자가 없거나 여러 개입니다.");
             return false;
         }
         if (isCustomDelimiterNotOneChar(text)) { // 커스텀 구분자가 한 글자가 아닌 경우
-            System.out.println("커스텀 구분자가 한 글자가 아닙니다.");
             return false;
         }
         if (isDelimiterDigit(text)) { // 커스텀 구분자가 숫자인 경우
-            System.out.println("커스텀 구분자가 숫자입니다.");
             return false;
         }
         return true;
