@@ -23,33 +23,32 @@ public class Delimiter {
         return null;
     }
 
-    public static boolean hasSingleCustomDelimiter(String text) {
+    public static boolean hasMultipleCustomDelimiter(String text) {
         Matcher matcher = PATTERN.matcher(text);
         int count = 0;
         while (matcher.find()) {
             count++;
             if (count > 1) {
-                return false;
+                return true;
             }
         }
-        return count == 1;
+        return count != 1;
     }
 
-    public static boolean isCustomDelimiterOneChar(String text) {
+    public static boolean isCustomDelimiterNotOneChar(String text) {
         String delimiter = extractDelimiter(text);
         if (delimiter == null) {
-            return false;
+            return true;
         }
-        return delimiter.length() == 1;
+        return delimiter.length() != 1;
     }
 
-    public static boolean isDelimiterNotDigit(String text) {
+    public static boolean isDelimiterDigit(String text) {
         String delimiter = extractDelimiter(text);
         if (delimiter == null || delimiter.isEmpty()) {
-            return false;
+            return true;
         }
-        boolean isOnlyDigits = delimiter.matches("\\d+");
-        return !isOnlyDigits;
+        return delimiter.matches("\\d+");
     }
 
     public static boolean isCustomDelimiter(String text) {
@@ -59,15 +58,15 @@ public class Delimiter {
             System.out.println("커스텀 구분자 양식이 포함되어 있지 않습니다.");
             return false;
         }
-        if (!hasSingleCustomDelimiter(text)) { // 커스텀 구분자가 하나가 아닌 경우
+        if (hasMultipleCustomDelimiter(text)) { // 커스텀 구분자가 하나가 아닌 경우
             System.out.println("커스텀 구분자가 없거나 여러 개입니다.");
             return false;
         }
-        if (!isCustomDelimiterOneChar(text)) { // 커스텀 구분자가 한 글자가 아닌 경우
+        if (isCustomDelimiterNotOneChar(text)) { // 커스텀 구분자가 한 글자가 아닌 경우
             System.out.println("커스텀 구분자가 한 글자가 아닙니다.");
             return false;
         }
-        if (!isDelimiterNotDigit(text)) { // 커스텀 구분자가 숫자인 경우
+        if (isDelimiterDigit(text)) { // 커스텀 구분자가 숫자인 경우
             System.out.println("커스텀 구분자가 숫자입니다.");
             return false;
         }
