@@ -1,30 +1,26 @@
 package calculator;
 
 public class Checker {
-    private static boolean isAllDigits(String numberString) {
-        return numberString.matches("^\\d+$");
-    }
+    public static int singleNumber(String numberString) {
+        int number;
 
-    public static void positiveNumber(String numberString) {
-        // 1. 음수 검사
-        if (numberString.contains("-")) {
+        // 1. 숫자 형식 및 int 범위 초과 검사
+        try {
+            number = Integer.parseInt(numberString);
+        } catch (NumberFormatException e) {
+            // 숫자가 아닌 문자, 혹은 int 범위를 초과하는 문자열 처리
+            throw new IllegalArgumentException("입력값이 유효한 정수 형식이 아니거나 허용되는 범위를 초과합니다.");
+        }
+
+        // 2. 음수 검사
+        if (number < 0) {
             throw new IllegalArgumentException("음수는 허용되지 않습니다.");
         }
-        // 2. 숫자가 아닌 문자 포함 여부 검사
-        if (!isAllDigits(numberString)) {
-            throw new IllegalArgumentException("숫자가 아닌 문자는 허용되지 않습니다.");
-        }
-        // 3. 오버플로우 검사
-        try {
-            Integer.parseInt(numberString);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("허용되는 정수 범위를 초과합니다.");
-        }
+
+        return number;
     }
 
-    public static void checkOverflow(String numberString, int sum) {
-        int number = Integer.parseInt(numberString);
-
+    public static void checkOverflow(int number, int sum) {
         try {
             sum = Math.addExact(sum, number);
         } catch (ArithmeticException e) {

@@ -12,9 +12,9 @@ public class Calculator {
             if (numberString.isBlank()) {
                 throw new IllegalArgumentException("구분자의 위치가 잘못되었습니다.");
             }
-            Checker.positiveNumber(numberString);
-            Checker.checkOverflow(numberString, sum);
-            sum += Integer.parseInt(numberString);
+            int number = Checker.singleNumber(numberString);
+            Checker.checkOverflow(number, sum);
+            sum += number;
         }
 
         return sum;
