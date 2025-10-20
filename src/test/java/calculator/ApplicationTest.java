@@ -49,11 +49,27 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 기본_구분자_앞뒤_사용() {
-        assertSimpleTest(() -> {
-            run(",1:2:5,");
-            assertThat(output()).contains("결과 : 8");
-        });
+    void 기본_구분자_앞_사용() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException(",1,2"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 기본_구분자_뒤_사용() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1,2,"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 기본_구분자_중간_사용() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1,,2"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
     }
 
     @Test
@@ -201,14 +217,6 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 커스텀_구분자_앞뒤_사용() {
-        assertSimpleTest(() -> {
-            run("//-\\n-1-2-3---");
-            assertThat(output()).contains("결과 : 6");
-        });
-    }
-
-    @Test
     void 음수_입력() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("-1,2,3"))
@@ -316,6 +324,14 @@ class ApplicationTest extends NsTest {
     void 커스텀_구분자_기본_구분자_혼용() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("//;\\n1,2;3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 커스텀_구분자_앞뒤_사용() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//;\\n;;1,2;3"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
