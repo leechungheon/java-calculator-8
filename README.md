@@ -39,7 +39,30 @@
 - [x]  자료형 범위를 초과하는 경우
 
 > 사용자가 잘못된 값 입력 시 `IllegalArgumentException`을 발생시킨다.
->
+---
+
+## 📁 프로젝트 디렉토리 구조
+
+```smalltalk
+/프로젝트_이름/
+├── src/
+│   └── main/
+│       └── java/
+│           └── calculator/
+│               ├── Application.java    # ➡️ 애플리케이션 진입점 (main 메서드 포함)
+│               ├── Calculator.java     # ➡️ 핵심 비즈니스 로직: 최종 계산(덧셈) 담당
+│               ├── Checker.java        # ➡️ 숫자 유효성 검증 (음수, 오버플로우 등) 담당
+│               ├── Delimiter.java      # ➡️ 기본/커스텀 구분자 유효성 검증 및 추출 로직 담당
+│               ├── Input.java          # ➡️ 사용자 입력 처리 (Input/Output 클래스는 I/O 담당)
+│               ├── InputParser.java    # ➡️ 입력 문자열을 숫자 배열로 파싱 및 분리
+│               └── Output.java         # ➡️ 계산 결과 출력 처리
+│
+└── src/
+    └── test/
+        └── java/
+            └── calculator/
+                └── ApplicationTest.java # ➡️ 애플리케이션 통합 및 핵심 로직 테스트
+```
 
 ---
 
