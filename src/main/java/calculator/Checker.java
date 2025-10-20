@@ -27,4 +27,10 @@ public class Checker {
             throw new IllegalArgumentException("계산 결과가 계산 가능한 범위를 초과했습니다.");
         }
     }
+
+    public static void checkNotBlank(String numberString) {
+        if (numberString.isBlank()) {
+            throw new IllegalArgumentException("구분자의 위치가 잘못되었습니다.");
+        }
+    }
 }
