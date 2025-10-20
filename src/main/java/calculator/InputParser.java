@@ -10,9 +10,9 @@ public class InputParser {
         if (isCustomDelimiter) {
             String customDelimiter = Delimiter.extractDelimiter(text);
             text = text.replace("//" + customDelimiter + "\\n", "");
-            return text.split(Pattern.quote(customDelimiter));
+            return text.split(Pattern.quote(customDelimiter), -1);
         } else {
-            return text.split("[,:]+");
+            return text.split("[,:]", -1);
         }
     }
 }

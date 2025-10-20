@@ -34,18 +34,18 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 기본_구분자_스페이스_포함() {
-        assertSimpleTest(() -> {
-            run("1: :3");
-            assertThat(output()).contains("결과 : 4");
-        });
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1: :3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
     }
 
     @Test
     void 기본_구분자_여러번_사용() {
-        assertSimpleTest(() -> {
-            run("1::::2:,,:::3");
-            assertThat(output()).contains("결과 : 6");
-        });
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1::::2:,,:::3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
     }
 
     @Test
@@ -331,7 +331,23 @@ class ApplicationTest extends NsTest {
     @Test
     void 커스텀_구분자_앞뒤_사용() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("//;\\n;;1,2;3"))
+                assertThatThrownBy(() -> runException("//;\\n;;1;2;3;"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 커스텀_구분자_앞_사용() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//;\\n-1-2-3"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void 커스텀_구분자_뒤_사용() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//-\\n1-2-3-"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
