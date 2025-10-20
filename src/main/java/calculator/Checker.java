@@ -21,4 +21,14 @@ public class Checker {
             throw new IllegalArgumentException("허용되는 정수 범위를 초과합니다.");
         }
     }
+
+    public static void checkOverflow(String numberString, int sum) {
+        int number = Integer.parseInt(numberString);
+
+        try {
+            sum = Math.addExact(sum, number);
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException("계산 결과가 계산 가능한 범위를 초과했습니다.");
+        }
+    }
 }
